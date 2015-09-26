@@ -1,0 +1,19 @@
+<h1>Hello, <%= current_user.email %></h1>
+
+
+<h2>Create New Task</h2>
+  <%= form_for [current_user, @task] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+  <% end %>
+<h2>Current Tasks</h2>
+<% current_user.tasks.each do | task| %>
+  <p>
+    <%= task.name %>
+    <%=link_to [current_user, task], method: :delete do %>
+     <span class="glyphicon glyphicon-ok"></span>
+    <% end %>
+
+  </p>
+<% end %>
